@@ -1,0 +1,1 @@
+# 링크 -> [이 코드는 생활코딩의 React 강의 내용입니다.](https://www.youtube.com/watch?v=XMb0w3KMw00&list=PLuHgQVnccGMCRv6f8H9K5Xwsdyg4sFSdi)
