@@ -66,17 +66,26 @@ ___
 ### 2. npm을 이용하여 create-react-app 설치
 
 <br>
+<br>
 
 > cmd 창을 열어 다음 명령어들을 입력해주자.
 
+<br>
+
+
+1. create-react-app을 설치하는데 g옵션을 줘서 어디에서든 실행가능하게 한다.
 ```
 npm install -g create-react-app
+```
+
+<br>
+
+
+2. 설치 확인(버전 확인)
+```
 create-react-app -V
 ```
-```
-<create-react-app을 설치하는데 g옵션을 줘서 어디에서든 실행가능하게 한다.>
-<설치 확인(버전 확인)>
-```
+
 
 ___
 ___
