@@ -5,8 +5,8 @@ class Subject extends Component{
   render(){
     return(
       <header>
-        <h1>WEB</h1>
-        world wide web!
+        <h1>{this.props.title}</h1>
+        {this.props.sub}
     </header>
     );
   }
@@ -18,9 +18,10 @@ class App extends Component {
     return (
       <div className="App">
         {/* Hello, React!! */}
-        <Subject />
+        <Subject title="WEB" sub="world wide web!" />
+        <Subject title="React" sub="Hello React!" />
         <TOC />
-        <Content />
+        <Content title="HTML" sub="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, id magnam. Voluptatibus deserunt dolorem odit perferendis quis mollitia in dolorum." />
 
       </div>
     );
@@ -45,8 +46,8 @@ class Content extends Component{
   render(){
     return(
       <article>
-      <h2>HTML</h2>        
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, id magnam. Voluptatibus deserunt dolorem odit perferendis quis mollitia in dolorum.
+      <h2>{this.props.title}</h2>        
+      {this.props.sub}
     </article>
     );
   }  
