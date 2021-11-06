@@ -19,12 +19,17 @@ ___
 <br>
 
 
-1. 패키지 설치
-    * package.json 파일에 입력한 패키지를 설치한다.
-        * npm install
-2. 프로젝트 실행
-    * npm start run
+1. 패키지 설치 (package.json 파일에 입력한 패키지를 설치한다.)
 
+```
+npm install
+```
+
+2. 프로젝트 실행
+
+```
+npm start run
+```
 
 <br>
 
