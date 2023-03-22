@@ -1,26 +1,32 @@
-import logo from './logo.svg';
 import './App.css';
-import { useState } from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from 'react-router-dom';
+import NavBar from './components/NavBar';
+import routes from './routes';
+
+
 
 function App() {
 
-  const [number, setNumber] = useState(1);
-
-  // let number = 1;
-  const double = () => {
-    // setNumber(number * 2);
-    // setNumber(number * 2);
-    setNumber((prv) => prv * 2);
-    setNumber((prevState) => prevState * 2);
-  };
 
   return (
-    <>
-      <div>{number}</div>
-      <button className="btn btn-primary" onClick={double}>
-        submit
-      </button>
-    </>
+
+    <Router>
+      <NavBar />
+
+      <div className="container">
+        <Switch>
+          {routes.map(route => {
+            return (
+              <Route key={route.path} exact path={route.path} component={route.component} />
+            )
+          })}
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
