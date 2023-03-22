@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 const BlogForm = () => {
 
 
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
+    const history = useHistory();
 
     const onSubmit = (e) => {
         // console.log(e);
@@ -16,7 +18,7 @@ const BlogForm = () => {
         axios.post("http://localhost:3001/posts", {
             title,
             body
-        });
+        }).then(() => { history.push("/blogs") });
     }
 
     return (
