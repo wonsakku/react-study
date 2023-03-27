@@ -1,14 +1,10 @@
 {
   "posts": [
     {
-      "title": "dfv",
-      "body": "dfv",
-      "id": 1
-    },
-    {
-      "title": "pp",
-      "body": "pp",
-      "id": 2
+      "title": "testTitle",
+      "body": "testBody",
+      "createdAt": 1679916274390,
+      "id": 3
     }
   ]
 }

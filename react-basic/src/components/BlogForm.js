@@ -17,7 +17,8 @@ const BlogForm = () => {
 
         axios.post("http://localhost:3001/posts", {
             title,
-            body
+            body,
+            createdAt: Date.now()
         }).then(() => { history.push("/blogs") });
     }
 
