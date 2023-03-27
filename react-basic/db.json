@@ -24,7 +24,7 @@
       "body": "www",
       "createdAt": 1679918516518,
       "id": 7,
-      "publish": true
+      "publish": false
     },
     {
       "title": "publish",
@@ -43,9 +43,16 @@
     {
       "title": "spring data jpa",
       "body": "spring data jpa",
-      "publish": false,
+      "publish": true,
       "createdAt": 1679920112150,
       "id": 10
+    },
+    {
+      "title": "admin",
+      "body": "admin",
+      "publish": true,
+      "createdAt": 1679922856103,
+      "id": 11
     }
   ]
 }
