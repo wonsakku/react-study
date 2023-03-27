@@ -3,8 +3,49 @@
     {
       "title": "testTitle",
       "body": "testBody",
-      "createdAt": 1679916274390,
-      "id": 3
+      "createdAt": 1679918334775,
+      "id": 4,
+      "publish": true
+    },
+    {
+      "title": "testTitleeeeeeeeee",
+      "body": "testBodyffffff",
+      "createdAt": 1679918343667,
+      "id": 5
+    },
+    {
+      "title": "testTitleeeeeee",
+      "body": "testBodyffffff321",
+      "createdAt": 1679918384618,
+      "id": 6
+    },
+    {
+      "title": "eee",
+      "body": "www",
+      "createdAt": 1679918516518,
+      "id": 7,
+      "publish": true
+    },
+    {
+      "title": "publish",
+      "body": "publish",
+      "publish": true,
+      "createdAt": 1679919923236,
+      "id": 8
+    },
+    {
+      "title": "spring boot",
+      "body": "spring boot",
+      "publish": true,
+      "createdAt": 1679920088791,
+      "id": 9
+    },
+    {
+      "title": "spring data jpa",
+      "body": "spring data jpa",
+      "publish": false,
+      "createdAt": 1679920112150,
+      "id": 10
     }
   ]
 }
