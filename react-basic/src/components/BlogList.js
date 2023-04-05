@@ -20,11 +20,13 @@ const BlogList = ({ isAdmin }) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [numberOfPosts, setNumberOfPosts] = useState(0);
     const [numberOfPages, setNumberOfPages] = useState(0);
+    const [searchText, setSearchText] = useState("");
     const limit = 1;
 
 
     const onClickPageButton = (page) => {
         history.push(`${location.pathname}?page=${page}`);
+        setCurrentPage(page);
         getPosts(page);
     }
 
@@ -33,7 +35,8 @@ const BlogList = ({ isAdmin }) => {
             _page: page,
             _limit: limit,
             _sort: "id",
-            _order: "desc"
+            _order: "desc",
+            title_like: searchText
         };
 
         if (!isAdmin) {
@@ -48,12 +51,12 @@ const BlogList = ({ isAdmin }) => {
             setPosts(res.data);
             setLoading(false);
         })
-    }, [isAdmin]);
+    }, [isAdmin, searchText]);
 
     useEffect(() => {
         setCurrentPage(parseInt(pageParam) || 1);
         getPosts(parseInt(pageParam) || 1);
-    }, [pageParam, getPosts]);
+    }, []);
 
     useEffect(() => {
         setNumberOfPages(Math.ceil(numberOfPosts / limit));
@@ -96,16 +99,39 @@ const BlogList = ({ isAdmin }) => {
         );
     }
 
+    const onSearch = (e) => {
+
+        if (e.key === "Enter") {
+            history.push(`${location.pathname}?page=1`);
+            setCurrentPage(1);
+            getPosts(1);
+        }
+
+    }
+
     return (
         <div>
-            {renderBlogList()}
-            {numberOfPages > 1 &&
-                <Pagination
-                    currentPage={currentPage}
-                    numberOfPages={numberOfPages}
-                    onClick={onClickPageButton}
-                    limit={5}
-                />
+            <input type="text"
+                className="form-control"
+                placeholder='Search...'
+                value={searchText}
+                onChange={(e) => setSearchText(e.target.value)}
+                onKeyUp={onSearch}></input>
+            <hr />
+            {posts.length === 0 ?
+                <div>No Blog Posts Found</div>
+                :
+                <>
+                    {renderBlogList()}
+                    {numberOfPages > 1 &&
+                        <Pagination
+                            currentPage={currentPage}
+                            numberOfPages={numberOfPages}
+                            onClick={onClickPageButton}
+                            limit={5}
+                        />
+                    }
+                </>
             }
         </div>
     );
