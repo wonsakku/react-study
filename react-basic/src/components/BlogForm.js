@@ -2,9 +2,10 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useHistory, useParams } from 'react-router-dom';
 import propTypes from 'prop-types';
+import Toast from './Toast';
 
+const BlogForm = ({ editing, addToast }) => {
 
-const BlogForm = ({ editing }) => {
 
     const { id } = useParams();
     const history = useHistory();
@@ -15,6 +16,8 @@ const BlogForm = ({ editing }) => {
     const [originalBody, setOriginalBody] = useState('');
     const [publish, setPublish] = useState(false);
     const [originalPublish, setoriginalPublish] = useState('');
+    const [titleError, setTitleError] = useState(false);
+    const [bodyError, setBodyError] = useState(false);
 
     useEffect(() => {
         if (editing) {
@@ -45,12 +48,30 @@ const BlogForm = ({ editing }) => {
         setPublish(e.target.checked);
     }
 
+    const validateForm = () => {
+        let validated = true;
+
+        if (title === '') {
+            setTitleError(true);
+            validated = false;
+        }
+
+        if (body === '') {
+            setBodyError(true);
+            validated = false;
+        }
+
+        return validated;
+    }
+
 
     const onSubmit = (e) => {
-        // console.log(e);
-        // console.log(e.target);
-        // console.log(title);
-        // console.log(body);
+        setTitleError(false);
+        setBodyError(false);
+
+        if (!validateForm()) {
+            return;
+        }
 
         if (editing) {
             axios.patch(`http://localhost:3001/posts/${id}`, {
@@ -65,7 +86,14 @@ const BlogForm = ({ editing }) => {
                 body,
                 publish,
                 createdAt: Date.now()
-            }).then(() => { history.push("/admin") });
+            }).then(() => {
+                addToast({
+                    "type": "success",
+                    "text": "successfully created!"
+                });
+
+                history.push("/admin");
+            });
         }
     }
 
@@ -74,17 +102,29 @@ const BlogForm = ({ editing }) => {
             <h1>{editing ? "Edit" : "Create"} a Blog Post</h1>
             <div className="mb-3">
                 <label className="form-label">Title</label>
-                <input className="form-control" value={title} onChange={(e) => {
+                <input className={`form-control ${titleError ? "border-danger" : ""}`} value={title} onChange={(e) => {
                     setTitle(e.target.value);
                 }}></input>
+                {titleError &&
+                    <div className="text-danger">
+                        Title is required
+                    </div>
+                }
             </div>
             <div className="mb-3">
                 <label className="form-label">Body</label>
-                <textarea className='form-control' value={body}
+                <textarea className={`form-control ${bodyError ? "border-danger" : ""}`} value={body}
                     onChange={(e) => {
                         setBody(e.target.value);
                     }}
                     rows="10" />
+
+                {bodyError &&
+                    <div className="text-danger">
+                        Body is required
+                    </div>
+                }
+
             </div>
             <div className='form-check mb-3'>
                 <input

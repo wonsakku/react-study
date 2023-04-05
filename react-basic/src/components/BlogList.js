@@ -1,11 +1,13 @@
 import axios from 'axios';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import Card from '../components/Card';
 import { Link, useLocation } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import LoadingSpinner from '../components/LoadingSpinner';
 import propTypes from 'prop-types';
 import Pagination from './Pagination';
+import Toast from './Toast';
+import useToast from '../hooks/toast';
 
 
 const BlogList = ({ isAdmin }) => {
@@ -15,13 +17,15 @@ const BlogList = ({ isAdmin }) => {
     const params = new URLSearchParams(location.search);
     const pageParam = params.get("page");
 
+    const [toasts, addToast, deleteToast] = useToast();
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
     const [numberOfPosts, setNumberOfPosts] = useState(0);
     const [numberOfPages, setNumberOfPages] = useState(0);
     const [searchText, setSearchText] = useState("");
-    const limit = 1;
+
+    const limit = 5;
 
 
     const onClickPageButton = (page) => {
@@ -62,11 +66,15 @@ const BlogList = ({ isAdmin }) => {
         setNumberOfPages(Math.ceil(numberOfPosts / limit));
     }, [numberOfPosts]);
 
+
+
+
     const deleteBlog = (e, id) => {
         e.stopPropagation();
         axios.delete(`http://localhost:3001/posts/${id}`)
             .then(() => {
                 setPosts(prevPosts => prevPosts.filter(post => post.id !== id));
+                addToast({ text: "Successfully deleted", type: "success" });
             });
     };
 
@@ -111,6 +119,7 @@ const BlogList = ({ isAdmin }) => {
 
     return (
         <div>
+            <Toast toasts={toasts} deleteToast={deleteToast} />
             <input type="text"
                 className="form-control"
                 placeholder='Search...'

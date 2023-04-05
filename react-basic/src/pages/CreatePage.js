@@ -1,10 +1,10 @@
 import BlogForm from "../components/BlogForm";
 
-const CreatePage = () => {
+const CreatePage = ({ addToast }) => {
 
     return (
         <div>
-            <BlogForm />
+            <BlogForm addToast={addToast} />
         </div>
     );
 }
