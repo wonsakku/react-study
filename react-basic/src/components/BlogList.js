@@ -6,7 +6,6 @@ import { useHistory } from 'react-router-dom';
 import LoadingSpinner from '../components/LoadingSpinner';
 import propTypes from 'prop-types';
 import Pagination from './Pagination';
-import Toast from './Toast';
 import useToast from '../hooks/toast';
 
 
@@ -17,13 +16,15 @@ const BlogList = ({ isAdmin }) => {
     const params = new URLSearchParams(location.search);
     const pageParam = params.get("page");
 
-    const [toasts, addToast, deleteToast] = useToast();
+    const { addToast } = useToast();
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
     const [numberOfPosts, setNumberOfPosts] = useState(0);
     const [numberOfPages, setNumberOfPages] = useState(0);
     const [searchText, setSearchText] = useState("");
+
+
 
     const limit = 5;
 
@@ -119,7 +120,6 @@ const BlogList = ({ isAdmin }) => {
 
     return (
         <div>
-            <Toast toasts={toasts} deleteToast={deleteToast} />
             <input type="text"
                 className="form-control"
                 placeholder='Search...'

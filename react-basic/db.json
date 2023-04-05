@@ -1,46 +1,6 @@
 {
   "posts": [
     {
-      "title": "testTitle",
-      "body": "testBody",
-      "createdAt": 1679918334775,
-      "id": 4,
-      "publish": true
-    },
-    {
-      "title": "testTitleeeeeeeeee",
-      "body": "testBodyffffff",
-      "createdAt": 1679918343667,
-      "id": 5
-    },
-    {
-      "title": "testTitleeeeeee",
-      "body": "testBodyffffff321",
-      "createdAt": 1679918384618,
-      "id": 6
-    },
-    {
-      "title": "eee",
-      "body": "www",
-      "createdAt": 1679918516518,
-      "id": 7,
-      "publish": false
-    },
-    {
-      "title": "publish",
-      "body": "publish",
-      "publish": true,
-      "createdAt": 1679919923236,
-      "id": 8
-    },
-    {
-      "title": "spring boot",
-      "body": "spring boot",
-      "publish": true,
-      "createdAt": 1679920088791,
-      "id": 9
-    },
-    {
       "title": "spring data jpa",
       "body": "spring data jpa",
       "publish": true,
@@ -48,32 +8,18 @@
       "id": 10
     },
     {
-      "title": "admin11",
-      "body": "admin",
-      "publish": false,
-      "createdAt": 1679922856103,
-      "id": 11
-    },
-    {
-      "title": "admin12",
-      "body": "admin",
+      "title": "spring data jpa12",
+      "body": "spring data jpa",
       "publish": true,
-      "createdAt": 1679922856103,
+      "createdAt": 1679920112150,
       "id": 12
     },
     {
-      "title": "admin13",
-      "body": "admin",
-      "publish": false,
-      "createdAt": 1679922856103,
-      "id": 13
-    },
-    {
-      "title": "admin15",
-      "body": "admin",
-      "publish": false,
-      "createdAt": 1679922856103,
-      "id": 15
+      "title": "spring data jpa14",
+      "body": "spring data jpa",
+      "publish": true,
+      "createdAt": 1679920112150,
+      "id": 14
     }
   ]
 }

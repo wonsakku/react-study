@@ -1,4 +1,5 @@
 import propTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 
 // const Card = (props) => {
 const Card = ({ title, children, onClick }) => {
