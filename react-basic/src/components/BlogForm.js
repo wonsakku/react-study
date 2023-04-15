@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useHistory, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import propTypes from 'prop-types';
 import Toast from './Toast';
 import useToast from '../hooks/toast';
@@ -11,7 +11,7 @@ const BlogForm = ({ editing }) => {
 
 
     const { id } = useParams();
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
@@ -54,9 +54,9 @@ const BlogForm = ({ editing }) => {
 
     const goBack = () => {
         if (editing) {
-            history.push(`/blogs/${id}`);
+            navigate(`/blogs/${id}`);
         } else {
-            history.push("/blogs");
+            navigate("/blogs");
         }
     }
 
@@ -95,7 +95,7 @@ const BlogForm = ({ editing }) => {
                 body,
                 publish
             }).then((res) => {
-                history.push(`/blogs/${id}`)
+                navigate(`/blogs/${id}`)
             }).catch(e => {
                 addToast({
                     "type": "danger",
@@ -115,7 +115,7 @@ const BlogForm = ({ editing }) => {
                     "text": "successfully created!"
                 });
 
-                history.push("/admin");
+                navigate("/admin");
             }).catch(e => {
                 addToast({
                     "type": "danger",
