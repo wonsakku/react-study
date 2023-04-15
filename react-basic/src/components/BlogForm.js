@@ -3,8 +3,11 @@ import axios from 'axios';
 import { useHistory, useParams } from 'react-router-dom';
 import propTypes from 'prop-types';
 import Toast from './Toast';
+import useToast from '../hooks/toast';
+import LoadingSpinner from './LoadingSpinner';
 
-const BlogForm = ({ editing, addToast }) => {
+
+const BlogForm = ({ editing }) => {
 
 
     const { id } = useParams();
@@ -18,6 +21,9 @@ const BlogForm = ({ editing, addToast }) => {
     const [originalPublish, setoriginalPublish] = useState('');
     const [titleError, setTitleError] = useState(false);
     const [bodyError, setBodyError] = useState(false);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState("");
+    const { addToast } = useToast();
 
     useEffect(() => {
         if (editing) {
@@ -28,7 +34,17 @@ const BlogForm = ({ editing, addToast }) => {
                 setOriginalBody(res.data.body);
                 setPublish(res.data.publish);
                 setoriginalPublish(res.data.publish);
+                setLoading(false);
+            }).catch(e => {
+                setError("something went wrong in db");
+                addToast({
+                    "type": "danger",
+                    "text": "something went wrong in db"
+                });
+                setLoading(false);
             });
+        } else {
+            setLoading(false);
         }
     }, [id, editing]);
 
@@ -78,7 +94,14 @@ const BlogForm = ({ editing, addToast }) => {
                 title,
                 body,
                 publish
-            }).then((res) => { history.push(`/blogs/${id}`) });
+            }).then((res) => {
+                history.push(`/blogs/${id}`)
+            }).catch(e => {
+                addToast({
+                    "type": "danger",
+                    "text": "We could not update blog"
+                });
+            });
 
         } else {
             axios.post("http://localhost:3001/posts", {
@@ -93,8 +116,21 @@ const BlogForm = ({ editing, addToast }) => {
                 });
 
                 history.push("/admin");
+            }).catch(e => {
+                addToast({
+                    "type": "danger",
+                    "text": "We could not create blog"
+                });
             });
         }
+    }
+
+    if (loading) {
+        return <LoadingSpinner />
+    }
+
+    if (error) {
+        return <div>{error}</div>
     }
 
     return (

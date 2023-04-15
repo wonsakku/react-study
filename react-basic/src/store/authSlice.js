@@ -10,10 +10,11 @@ const authSlice = createSlice({
     reducers: {
         // slice의 상태를 변경해줄 수 있는 곳이 reducers
         login: (state) => {
+            localStorage.setItem("isLoggedIn", "yes");
             state.isLoggedIn = true;
         },
         logout: (state) => {
-
+            localStorage.removeItem("isLoggedIn");
             state.isLoggedIn = false;
         }
 
